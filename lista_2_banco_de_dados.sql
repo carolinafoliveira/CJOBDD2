@@ -88,6 +88,7 @@ GO
 INSERT INTO CLIENTES VALUES
     (2, 'Marcos Paulo', 'M', 45, '22222222222', 'marcos@gmail.com'),
     (3, 'Andre Luis', 'M', 25, '33333333333', 'andre@gmail.com'),
+    (4, 'Maria Clara', 'F', 22, '44444444444', 'maria@gmail.com'),
     (5, 'Pedro Augusto', 'M', 45, '55555555555', 'pedro@gmail.com'),
     (6, 'Ricardo Lima', 'M', 52, '66666666666', 'ricardo@gmail.com'),
     (7, 'Jose Pereira', 'M', 45, '77777777777', 'marcos@gmail.com'),
@@ -96,6 +97,12 @@ INSERT INTO CLIENTES VALUES
     (11, 'Tiago Augusto', NULL, 72, '20202020202', 'tiago@yahoo.com.br'),
     (12, 'Maria Pereira', 'F', 45, '30303030303', 'maria@bol.com.br');
 GO
+
+SELECT *
+FROM dbo.CLIENTES;
+
+
+
 
 -- Estes clientes nao receberam e-mail.
 -- O SQL Server preenchera o campo com 'meu@email.com'.

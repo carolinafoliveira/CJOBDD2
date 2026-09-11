@@ -117,3 +117,25 @@ FROM FUNCIONARIOS F LEFT OUTER JOIN DEPENDENTES D
 	ON F.ID = D.ID
 WHERE D.Nome IS NULL;
 GO
+
+-- Exibe as informações de todos os funcionarios e de seus dependentes
+-- utilizando RIGHT JOIN
+
+SELECT F.ID				AS 'ID',
+       F.Nome			AS 'Funcionário',
+	   F.Admissao		AS 'Admissão',
+	   F.Salario		AS 'Salário',
+	   D.Nome			AS 'Dependente',
+	   D.DataNascimento	AS 'Data de Nascimento'
+FROM DEPENDENTES D RIGHT OUTER JOIN FUNCIONARIOS F 
+	ON F.ID = D.ID;
+GO
+
+-- Exibe o total de dependentes de cada funcionário
+SELECT F.ID		AS 'ID',
+	   F.Nome	AS 'Funcionário',
+	   COUNT(F.ID) AS 'Total de Dependentes'
+FROM FUNCIONARIOS F INNER JOIN DEPENDENTES D
+	ON F.ID = D.ID
+GROUP BY F.ID, F.Nome;
+GO

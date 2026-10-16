@@ -74,3 +74,43 @@ DECLARE @valor AS DECIMAL(5, 2) = 156.90;
 SELECT CAST(@valor AS CHAR(20))			AS 'CAST',
 	   CONVERT(DECIMAL(10,5), @valor)	AS 'CONVERT';
 GO
+
+-- Exemplo de conversao de um inteiro com CAST e CONVERT
+DECLARE @valor AS INT = 100;
+
+SELECT CAST(@valor AS CHAR(20))		 AS 'CAST 1',
+	   CAST(@valor AS DECIMAL(10, 5))		 AS 'CAST 2',
+	   CONVERT(CHAR(20), @valor)	AS 'CONVERT 1',
+	   CONVERT(DECIMAL(10, 5), @valor)	AS 'CONVERT 2';
+GO
+
+SET LANGUAGE English;
+GO
+
+-- Conversão de uma data utilizando CAST e CONVERT 
+DECLARE @data AS DATE = '01/25/2024';
+
+SELECT CAST(@data AS CHAR(20)) AS 'CAST (Padrão)',
+	   CONVERT(CHAR(20), @data) AS 'CONVERT (Padrão)',
+	   CONVERT(CHAR(20), @data, 101) AS 'EUA (mm/dd/aaaa)',
+	   CONVERT(CHAR(20), @data, 103) AS 'Brasil (dd/mm/aaaa)',
+	   CONVERT(CHAR(20), @data, 111) AS 'Japão (aaaa/mm/dd)';
+GO
+
+-- Demonstra a utilizacao do PARSE para converter data e dinheiro
+SELECT PARSE('Quinta-feira, 25 de janeiro de 2024' AS DATE USING 'pt-BR') AS 'Data Brasileira',
+       PARSE('Thursday, 25 January 2024' AS DATE USING 'en-US') AS 'Data Americana',
+       PARSE('01/25/2024' AS DATETIME2) AS 'Data Padrão',
+       PARSE('R$ 345,98' AS MONEY USING 'pt-BR') AS 'Dinheiro Brasileiro',
+       PARSE('$ 345.98' AS MONEY USING 'en-US') AS 'Dinheiro Americano',
+       PARSE('¥ 345.98' AS MONEY USING 'jp-JP') AS 'Dinheiro Japonês';
+GO
+
+-- Exemplo de validação utilizando TRY_CAST, TRY_CONVERT e TRY_PARSE
+DECLARE @data AS CHAR(10) = '25/01/2024';
+
+SELECT TRY_CAST(@data AS DATE) AS 'TRY CAST',
+       TRY_CONVERT(DATE, @data, 103) AS 'Brasil (dd/mm/aaaa)',
+       TRY_CONVERT(DATE, @data, 101) AS 'EUA (mm/dd/aaaa)',
+       TRY_PARSE(@data AS DATE) AS 'TRY PARSE';
+GO

@@ -107,3 +107,22 @@ CREATE SEQUENCE IncrementaDecimal AS DECIMAL (3, 0)
 	CYCLE
 	CACHE 3;
 GO
+
+-- Exibe o primeiro valor das sequencias 
+SELECT NEXT VALUE FOR Incrementa1 AS 'Incrementa1',
+	NEXT VALUE FOR Incrementa100 AS 'Incrementa100',
+	NEXT VALUE FOR Incrementa1000 AS 'Incrementa1000',
+	NEXT VALUE FOR IncrementaDecimal AS 'IncrementaDecimal';
+GO
+
+-- Cria uma tabela temporaria para ilustrar a utilizacao das sequencias
+CREATE TABLE #TestaSequencia (
+	ID INT,
+	Nome CHAR(20)
+);
+GO
+
+-- Reinicia o valor da sequencia Incrementa100
+ALTER SEQUENCE Incrementa100
+	RESTART WITH 10;
+GO
